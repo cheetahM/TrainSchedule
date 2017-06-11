@@ -22,114 +22,72 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="text-center">Train Schedule</h1>
-            <h3 class="text-center">Locomotive Lane</h3>
-        </div>
-        <div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col=md-12 col-lg-12">
-                    <!-- Current Train -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><strong>Current Train</strong></h3>
-                        </div>
-                        <div class="panel-body">
-                            <table class="table table-hover" id="trainSchedule">
-                                <thead>
-                                    <tr>
-                                        <th>Train Name</th>
-                                        <th>Train Line</th>
-                                        <th>Destination</th>
-                                        <th>Frequency</th>
-                                        <th>Next Arrival</th>
-                                        <th>Minutes Away</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+ 
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- Add New Trains -->
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><strong>Add a New Train</strong></h3>
-                        </div>
-                        <div class="panel-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="trainName">Train Name</label>
-                                    <input class="form-control" id="trainName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="trainLine">Train Line</label>
-                                    <input class="form-control" id="trainLine">
-                                </div>
-                                <div class="form-group">
-                                    <label for="trainDestination">Destination</label>
-                                    <input class="form-control" id="trainDestination">
-                                </div>
-                                <div class="form-group">
-                                    <label for="trainFrequency">Frequency</label>
-                                    <input class="form-control" id="trainFrequency">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nextArrivalTime">Next Arrival</label>
-                                    <input class="form-control" id="nextArrivalTime">
-                                </div>
-                                <div class="form-group">
-                                    <label for="minutesAway">Minutes Away</label>
-                                    <input class="form-control" id="minutesAway">
-                                </div>
-                                <button type="submit" class="btn btn-primary" id="addTrain">Add</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="text-center">Train Schedules</h1>
+	</div>
+
+	<div class="row">
+
+		<!-- Current Train Panel-->
+		<div class="col-lg-12">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">Current Train Schedule</h3>
+				</div>
+				<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>Train Name</th>
+						<th>Destination</th>
+						<th>Frequency(min)</th>
+						<th>Next Arrival</th>
+						<th>Minutes Away</th>
+					</tr>
+				</table>	
+				</div>
+			</div>
+		
+
+<!-- Train form data panel -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add Train</h3>
+				</div>
+				<div class="panel-body">
+
+					<!-- Gather train schedule data from form inputs-->
+					<form role="form">
+						<div class="form-group">
+							<label for="trainName">Train Name:</label>
+							<input type="text" class="form-control" id="trainName">
+						</div>
+						<div class="form-group">
+							<label for="tDestination">Destination:</label>
+							<input type="email" class="form-control" id="tDestination">
+						</div>
+						<div class="form-group">
+							<label for="firstTrainTime">First Train Time:</label>
+							<input type="text" class="form-control" id="firstTrainTime" placeholder="0:00 AM">
+						</div>
+						<div class="form-group">
+							<label for="tFrequency">Frequency(min):</label>
+							<input type="number" class="form-control" id="tFrequency">
+						</div>
+
+						<button type="submit" class="btn btn-default" id="submit">Add</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
     </div>
-    <!-- Javascript -->
-    <!--<script src="assets/js/app.js"></script>-->
-    <script>
-         // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyCGqVYlpW8ZARRw0n0fV0VN31yxVGcQw6w",
-        authDomain: "trainschedule-c54e8.firebaseapp.com",
-        databaseURL: "https://trainschedule-c54e8.firebaseio.com",
-        projectId: "trainschedule-c54e8",
-        storageBucket: "trainschedule-c54e8.appspot.com",
-        messagingSenderId: "325819356735"
-    };
-    firebase.initializeApp(config);
-    
-    var db = firebase.database();
-
-    // Event handler for `adding` a new Train Schedule
-    $("#addTrain").on("click", () => {
-        event.preventDefault();
-        //gather User data from inputs
-        let trainName = $("#trainName").val().trim();
-        let trainLine = $("#trainLine").val().trim();
-        let destination = $("#trainDestination").val().trim();
-        let nextArrivalTime = $("#nextArrivalTime").val().trim();
-        let minutesAway = $("#minutesAway").val().trim();
-        let frequency = $("#trainFrequency").val().trim();
-
-        console.log(trainName + ", " + trainLine + ", " + ", " + destination + ", " 
-        + nextArrivalTime + ", " + minutesAway);
-
-        db.ref().push({
-            name: trainName,
-            line: trainLine,
-            detination: destination,
-            nextArrivalTime: nextArrivalTime,
-            frequency: frequency
-        });
-    }); 
-    </script>
+    <script src="src/js/app.js"></script>
 </body>
 </html>

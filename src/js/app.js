@@ -14,24 +14,24 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 // on click event handler for adding a Train schedule
-  	$("#submit").click(function(){
-        event.preventDefault();  
-  		var tName = $("#trainName").val().trim();
-  		var tDestination = $("#tDestination").val().trim();
-  		var firstTrainTime = $("#firstTrainTime").val().trim();
-  		var tFrequency = $("#tFrequency").val().trim();
+$("#submit").click(function(){
+    event.preventDefault();  
+    var tName = $("#trainName").val().trim();
+    var tDestination = $("#tDestination").val().trim();
+    var firstTrainTime = $("#firstTrainTime").val().trim();
+    var tFrequency = $("#tFrequency").val().trim();
 
-  		//pushing train data into firebase
-  		database.ref().push({
-  			name: tName,
-  			destination: tDestination,
-  			time: firstTrainTime,
-  			frequency: tFrequency
-  		});
- 
-        //clear input fields after submission
-        $("input").val('');
-        return false;
+    //pushing train data into firebase
+    database.ref().push({
+        name: tName,
+        destination: tDestination,
+        time: firstTrainTime,
+        frequency: tFrequency
+    });
+
+    //clear input fields after submission
+    $("input").val('');
+    return false;
 });
 
   //on child_added event handler to fetch current train data from firebase

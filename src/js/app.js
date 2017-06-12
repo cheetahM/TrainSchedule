@@ -34,8 +34,8 @@ $("#submit").click(function(){
     return false;
 });
 
-  //on child_added event handler to fetch current train data from firebase
-  database.ref().on("child_added", function(trainData){
+//on child_added event handler to fetch current train data from firebase
+database.ref().on("child_added", function(trainData){
     var name = trainData.val().name;
     var destination = trainData.val().destination;
     var time = trainData.val().time;
@@ -66,7 +66,7 @@ $("#submit").click(function(){
     console.log("ARRIVAL TIME: " + moment(nextTrain, "hmm").format("HH:mm"));
 
 
-	//display in the top table by appending  the tr
+    //display in the top table by appending  the tr
     $(".table").append(`"<tr><td>${name}</td><td>${destination}</td><td>${frequency}</td>"
     <td>${nextTrain}</td><td>${tMinutesTillTrain}</td></tr>`);
 
